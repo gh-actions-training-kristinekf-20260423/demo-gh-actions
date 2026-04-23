@@ -1,0 +1,21 @@
+name: "Greetings"
+description: "Gretting"
+
+inputs:
+  greeting:
+    description: "Greeting word"
+    required: true
+    default: "Hello"
+  name: 
+    description: "Who to great"
+    required: true
+    default: "My friend"
+outputs:
+  greeting-text: 
+    description:  "Greeting text"
+
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.greeting }}
