@@ -1,7 +1,24 @@
-name: Demo 2
-run-name: Demo 2 :)
+name: Demo Github Actions Events
+run-name: Demo GitHub Actions Events
 
 on:
+  # Webhook events
+  push:
+    branches:
+      - main
+      - feat/*
+  pull_request:
+    branches: [main]
+  issues:
+    types: 
+      - opened
+      - closed
+
+  # Scheduled events
+  schedule:
+    - cron: 0 9 * * *
+    - cron: 0 12 * * 0
+
   # Manual events
   workflow_dispatch: 
     inputs:
@@ -24,7 +41,7 @@ on:
 
 env:
   GREETING_WORD: Hello
-  YOUR_NAME: ${{inputs.yourName}}
+  YOUR_NAME: ${{ inputs.yourName }}
 
 jobs:
   Greeting:
@@ -32,25 +49,24 @@ jobs:
     env:
       GREETING_WORD: Good afternoon
     steps:
-      - name: Say hello
+      - name: Say hello (step level env variables)
         env:
-          GREETING WORD: Good morning
-        run: echo $GREETING_WORD
-      - name: Your name
-        run: echo ${{ inputs.yourName }}
+          GREETING_WORD: Good morning
+        run: echo ${{ env.GREETING_WORD }}
+      - name: Say hello (job level env variables)
+        run: echo ${{ env.GREETING_WORD }}
       - name: Feeling good
         run: echo ${{ inputs.feelingGood }}
-      - name: print only if you are feeling good
-        run: echo "Great! have nice workshop!"
+      - name: Print only if you are feeling good
+        run: echo "Great! Have a nice workshop!"
         if: ${{ inputs.feelingGood == true }}
-      - name: print only if you are feeling bad
-        run: echo "No worries! I'm here with you"
+      - name: Print only if you are feeling bad
+        run: echo "No worries! I'm here with you 😊"
         if: inputs.feelingGood == false
       - name: GitHub Actions is
         run: echo ${{ inputs.howYouFindGitHubActions }}
   Another_Job:
     runs-on: ubuntu-latest
     steps:
-      - name: Say hello
-        run: echo $GREETING_WORD
-  
+      - name: Say hello (workflow level env variables)
+        run: echo ${{ env.GREETING_WORD }}
