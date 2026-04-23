@@ -8,8 +8,7 @@ on:
       - main
       - feature/*
   pull_request:
-    branches:
-      - main
+    branches: [main]
   issues:
     types: 
       - opened
