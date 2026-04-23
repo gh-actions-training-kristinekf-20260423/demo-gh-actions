@@ -1,5 +1,5 @@
-name: Demo Github Actions Events
-run-name: Demo GitHub Actions Events
+name: Demo 2
+run-name: Demo 2 :)
 
 on:
   # Manual events
