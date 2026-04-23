@@ -33,7 +33,7 @@ jobs:
       - name: Feeling good
         run: echo ${{ inputs.feelingGood }}
       - name: print only if you are feelung good
-        run: echo "Great" have nice workshop!"
+        run: echo "Great! have nice workshop!"
         if: ${{ inputs.feelingGood == true }}
       - name: print only if you are feelung bad
         run: echo "No worries! I'm here with you"
