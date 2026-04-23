@@ -13,6 +13,25 @@ on:
     types: 
       - opened
       - closed
+  # Manual events
+  workflow_dispatch:
+    inputs:
+      yourName:
+        description: 
+        required: true
+        default: My friend
+      feelingGood:
+        description: 
+        required: true
+        type: boolean
+      howYoyFindGithubActions:
+        description: How do you find Github Actions?
+        required: true
+        type: choice
+        options:
+          - Awesome
+          - Okay
+          - nah
 
 jobs:
   Greeting:
@@ -20,3 +39,9 @@ jobs:
     steps:
       - name: Say hello
         run: echo "Good morning"
+      - name: Your name
+        run: echo ${{ inputs.yourName }}
+      - name: Feeling good
+        run: echo ${{ inputs.feelingGood }}
+      - name: GitHub action is
+        run: echo ${{ inputs.howYoyFindGithubActions }}
