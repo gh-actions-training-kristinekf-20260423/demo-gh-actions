@@ -51,6 +51,6 @@ jobs:
   Another_Job:
     runs-on: ubuntu-latest
     steps:
-        - name: Say hello
+      - name: Say hello
         run: echo $GREETING_WORD
   
