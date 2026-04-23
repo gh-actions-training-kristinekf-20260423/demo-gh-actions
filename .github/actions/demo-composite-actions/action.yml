@@ -1,0 +1,29 @@
+name: "Greetings"
+description: "Greetings"
+
+inputs:
+  greeting:
+    description: "Greeting word"
+    required: true
+    default: "Hello"
+  name:
+    description: "Who to greet"
+    required: true
+    default: "My friend"
+outputs:
+  greeting-text:
+    description: "Greeting text"
+    value: ${{ steps.generate-output-step.outputs.output }}
+    
+runs:
+  using: composite
+  steps:
+    - name: Print greeting text
+      run: echo '${{ inputs.greeting }}, ${{ inputs.name }}'
+      shell: bash
+    - name: Generate output
+      id: generate-output-step
+      env:
+        OUTPUT: '${{ inputs.greeting }}, ${{ inputs.name }}'
+      run: echo "output=$OUTPUT" >> $GITHUB_OUTPUT
+      shell: bash
