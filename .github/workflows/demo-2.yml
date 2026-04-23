@@ -1,5 +1,5 @@
-name: Demo Github Actions Events
-run-name: Demo GitHub Actions Events
+name: Demo Conditions and Env
+run-name: Demo Conditions and Env
 
 on:
   # Webhook events
@@ -54,7 +54,8 @@ jobs:
           GREETING_WORD: Good morning
         run: echo ${{ env.GREETING_WORD }}
       - name: Say hello (job level env variables)
-        run: echo ${{ env.GREETING_WORD }}
+        run: echo $GREETING_WORD
+        if: ${{ env.GREETING_WORD == 'Good afternoon' }} 
       - name: Feeling good
         run: echo ${{ inputs.feelingGood }}
       - name: Print only if you are feeling good
@@ -70,3 +71,7 @@ jobs:
     steps:
       - name: Say hello (workflow level env variables)
         run: echo ${{ env.GREETING_WORD }}
+      - name: Dump github event context
+        run: echo '${{ toJson(github.event) }}'
+      - name: Dump runner context
+        run: echo '${{ toJson(runner) }}'
