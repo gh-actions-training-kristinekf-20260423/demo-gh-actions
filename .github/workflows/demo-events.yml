@@ -1,7 +1,7 @@
-name: demo github actions events
+name: Demo Github Actions Events
 run-name: Demo GitHub Actions Events
 
-on: 
+on:
   # Webhook events
   push:
     branches:
