@@ -18,26 +18,26 @@ on:
   schedule:
     - cron: 0 9 * * *
     - cron: 0 12 * * 0
-      
+
   # Manual events
-  workflow_dispatch:
+  workflow_dispatch: 
     inputs:
       yourName:
-        description: What is your name?
+        description: What's your name?
         required: true
         default: My friend
       feelingGood:
         description: Are you feeling good?
         required: true
         type: boolean
-      howYoyFindGithubActions:
-        description: How do you find Github Actions?
+      howYouFindGitHubActions:
+        description: How do you find GitHub Actions?
         required: true
         type: choice
         options:
           - Awesome
           - Okay
-          - nah
+          - Na
 
 jobs:
   Greeting:
@@ -49,5 +49,5 @@ jobs:
         run: echo ${{ inputs.yourName }}
       - name: Feeling good
         run: echo ${{ inputs.feelingGood }}
-      - name: GitHub action is
-        run: echo ${{ inputs.howYoyFindGithubActions }}
+      - name: GitHub Actions is
+        run: echo ${{ inputs.howYouFindGitHubActions }}
